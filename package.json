@@ -1,0 +1,70 @@
+{
+  "name": "waitlist-api",
+  "version": "1.0.0",
+  "description": "API for Thisa waitlist",
+  "main": "dist/index.js",
+  "engines": {
+    "npm": "6.14.5",
+    "node": "12.18.1"
+  },
+  "scripts": {
+    "start": "node dist",
+    "dev": "nodemon --watch src/ -e js,ts --exec 'dotenv tsc && dotenv npm run start'",
+    "build": "npm run typeorm migration:run && rimraf dist/ && dotenv tsc",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "test": "npx tsc --project ./tsconfig.json"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@types/async": "^3.2.5",
+    "@types/crypto-js": "^4.0.1",
+    "@types/express": "^4.17.11",
+    "@types/helmet": "^4.0.0",
+    "@types/mailgen": "^2.0.3",
+    "@types/node-schedule": "^1.3.1",
+    "@types/nodemailer": "^6.4.1",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "commitizen": "^4.2.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "dotenv": "^8.2.0",
+    "dotenv-cli": "^4.0.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@sentry/node": "^6.2.4",
+    "apollo-server-express": "^2.22.2",
+    "async": "^3.2.0",
+    "body-parser": "^1.19.0",
+    "class-validator": "^0.13.1",
+    "crypto-js": "^4.0.0",
+    "email-validator": "^2.0.4",
+    "express": "^4.17.1",
+    "freemail": "^1.7.0",
+    "graphql": "^15.5.0",
+    "helmet": "^4.4.1",
+    "mailgen": "^2.0.14",
+    "node-schedule": "^2.0.0",
+    "nodemailer": "^6.5.0",
+    "pg": "^8.5.1",
+    "pg-query-stream": "^4.0.0",
+    "rate-limiter-flexible": "^2.2.1",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.5.0",
+    "type-graphql": "^1.1.1",
+    "typeorm": "^0.2.32"
+  }
+}
