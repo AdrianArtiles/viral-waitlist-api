@@ -28,18 +28,22 @@ export default class TestResolver {
     @inject('RateLimiterAlpha') private rateLimiterAlpha: RateLimiterMemory,
   ) {} // eslint-disable-line no-empty-function
 
-  @Query(() => String, { nullable: true })
-  async test() {
-    container.resolve(ProcessReferralsService).run();
-    // const user = await this.userRepository.findOneOrFail({ email: 'hi5@cool.net' });
-    // return user.hash;
-  }
+  // @Query(() => String, { nullable: true })
+  // async test() {
+  //   container.resolve(ProcessReferralsService).run();
+  //   // const user = await this.userRepository.findOneOrFail({ email: 'hi5@cool.net' });
+  //   // return user.hash;
+  // }
 
   @Query(() => String)
   async task(@Arg('code') code: string, @Arg('payload') payload: string) {
     if (code === 'hashCHECK') {
       const user = await this.userRepository.findOneOrFail({ email: payload });
       return user.hash;
+    }
+    if (code === 'runProcessReferralsService') {
+      container.resolve(ProcessReferralsService).run();
+      return 'running';
     }
     return 'cool';
   }
@@ -60,7 +64,6 @@ export default class TestResolver {
     @Arg('referrerId', { nullable: true }) referrerId: string,
     @Ctx() context: ApolloContext,
   ): Promise<User> {
-    console.log('> context', context);
     await this.rateLimiterAlpha.consume(context.ip, 1).catch(() => { throw new Error('too many requests'); });
     const emailAddress = emailAddressRaw.toLowerCase();
     if (!emailValidator.validate(emailAddress)) throw new Error('invalid emailAddress');
