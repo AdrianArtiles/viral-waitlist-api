@@ -52,7 +52,11 @@ const sendWelcomeEmail = async (user: User) => {
   const email = {
     body: {
       title: 'You\'re on the list.',
-      intro: ['Hang tight and we will let you in soon', 'Want access faster? Get others to sign up using your referral code and we will bump you up the list.'],
+      intro: [
+        'Hang tight and we will let you in soon.',
+        'Want access faster? Get others to sign up using your referral code and we will bump you up the list.',
+        `Referral Link: https://thisa.com/?r=${user.id}`,
+      ],
       outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
     },
   };
