@@ -26,7 +26,7 @@ export default class User {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Field()
+  // @Field()
   @Column()
   email!: string;
 
