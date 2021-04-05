@@ -60,11 +60,10 @@ export default class ConfirmEmailService {
 
     const isConfirmed = await this.confirmUserEmail(emailString.toString(), hashString.toString());
 
+    console.log('> emailConfirmation', { isConfirmed, emailString });
     if (isConfirmed) {
-      console.log('confirmed!');
-      return res.redirect((successUrlString || 'https://thisa.com').toString());
+      return res.redirect((successUrlString || 'https://thisa.com?emailConfirmation=success').toString());
     }
-    console.log('not confirmed');
-    return res.redirect((failUrlString || 'https://thisa.com').toString());
+    return res.redirect((failUrlString || 'https://thisa.com?emailConfirmation=failure').toString());
   }
 }
