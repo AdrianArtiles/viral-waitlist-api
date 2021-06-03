@@ -15,8 +15,8 @@ const emailTransporter = nodemailer.createTransport({
 const mailGenerator = new Mailgen({
   theme: 'default',
   product: {
-    name: 'Thisa',
-    link: 'https://thisa.com/',
+    name: 'Example',
+    link: 'https://Example.com/',
   },
 });
 
@@ -29,7 +29,7 @@ const sendConfirmationEmail = async (user: User) => {
         button: {
           color: '#22BC66',
           text: 'Confirm Your Email',
-          link: `https://waitlist.thisa.com/confirmEmail?email=${user.email}&hash=${user.hash}`,
+          link: `https://waitlist.Example.com/confirmEmail?email=${user.email}&hash=${user.hash}`,
         },
       },
       outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
@@ -40,7 +40,7 @@ const sendConfirmationEmail = async (user: User) => {
   const emailText = mailGenerator.generatePlaintext(email);
 
   await emailTransporter.sendMail({
-    from: '"Thisa" <hello@thisa.com>',
+    from: '"Example" <hello@Example.com>',
     to: user.email,
     subject: 'confirm your email',
     html: emailBody,
@@ -55,7 +55,7 @@ const sendWelcomeEmail = async (user: User) => {
       intro: [
         'Hang tight and we will let you in soon.',
         'Want access faster? Get others to sign up using your referral code and we will bump you up the list.',
-        `Referral Link: https://thisa.com/?r=${user.id}`,
+        `Referral Link: https://Example.com/?r=${user.id}`,
       ],
       outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.',
     },
@@ -65,7 +65,7 @@ const sendWelcomeEmail = async (user: User) => {
   const emailText = mailGenerator.generatePlaintext(email);
 
   await emailTransporter.sendMail({
-    from: '"Thisa" <hello@thisa.com>',
+    from: '"Example" <hello@Example.com>',
     to: user.email,
     subject: 'you\'re on the list',
     html: emailBody,

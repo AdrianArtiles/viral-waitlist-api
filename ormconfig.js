@@ -1,5 +1,5 @@
 module.exports = {
-  url: process.env.DATABASE_URL || 'postgres://postgres@127.0.0.1/waitlistthisa_development',
+  url: process.env.DATABASE_URL || 'postgres://postgres@127.0.0.1/waitlist_development',
   type: 'postgres',
   extra: process.env.NODE_ENV !== 'production' ? undefined : { ssl: { rejectUnauthorized: false } },
   synchronize: false,
